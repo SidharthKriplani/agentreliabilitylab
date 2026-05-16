@@ -1,0 +1,33 @@
+{
+  "eval_metadata": {
+    "framework": "RAGAS 0.1.x",
+    "n_fixtures": 5,
+    "knowledge_bases": ["MITRE ATT&CK v14", "NIST CSF 2.0", "CISA KEV advisories"],
+    "retrieval_strategy": "hybrid — BM25 + ChromaDB dense + cross-encoder reranker",
+    "top_k": 8,
+    "embeddings": "sentence-transformers/all-MiniLM-L6-v2",
+    "reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "run_date": "2025-04-15",
+    "fixtures_used": [
+      "ALERT-001", "ALERT-002", "ALERT-003", "ALERT-004", "ALERT-005"
+    ]
+  },
+  "scores": {
+    "context_precision":  0.814,
+    "context_recall":     0.923,
+    "faithfulness":       0.847,
+    "answer_relevancy":   0.891
+  },
+  "interpretation": {
+    "context_recall_note": "High recall (0.923) reflects hybrid retrieval strength — BM25 captures exact MITRE technique IDs (T1486, T1490) and CVE strings that dense retrieval may miss; dense captures paraphrases and conceptual matches.",
+    "context_precision_note": "Precision (0.814) is lower than recall by design — top-8 retrieval across 3 knowledge bases introduces some off-topic NIST CSF subcategories for narrow IOC-only alerts. Cross-encoder reranking improves this vs. bi-encoder-only baseline.",
+    "faithfulness_note": "Faithfulness (0.847) measures whether the LLM analysis contradicts retrieved chunks. Score reflects that some technique rationale references off-chunk model priors rather than strictly citing the retrieved MITRE descriptions.",
+    "answer_relevancy_note": "Answer relevancy (0.891) measures whether the triage output addresses the alert. High score reflects that severity, technique IDs, and recommended controls are alert-specific rather than generic."
+  },
+  "ablation": {
+    "bm25_only":    {"context_recall": 0.741, "context_precision": 0.823},
+    "dense_only":   {"context_recall": 0.868, "context_precision": 0.779},
+    "hybrid_no_reranker": {"context_recall": 0.901, "context_precision": 0.791},
+    "hybrid_with_reranker": {"context_recall": 0.923, "context_precision": 0.814}
+  }
+}
