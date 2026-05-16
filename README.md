@@ -452,9 +452,9 @@ This project is part of a 13-repo portfolio targeting Applied LLM Systems Engine
 | [MetaSignal](https://github.com/SidharthKriplani/metasignal_platform) | A/B experiment validity — CUPED, guardrail-first, SRM |
 | [DevPulse](https://github.com/SidharthKriplani/devpulse_platform) | Version-safe RAG — conflict detection, LLM-Last architecture |
 | [PulseRank](https://github.com/SidharthKriplani/pulserank_platform) | Marketplace ranking — IPS debiasing, MMR diversity |
-| [TrialCheck](https://github.com/SidharthKriplani/trialcheck_v0) | A/B readout audit — SRM, peeking, underpowered tests |
-| [FeatureLeakageLens](https://github.com/SidharthKriplani/featureleakagelens_v0) | Pre-training leakage — target, temporal, overlap |
-| [GoldenSetAuditor](https://github.com/SidharthKriplani/goldensetauditor_v0) | LLM/RAG eval dataset quality |
+| [TrialCheck](https://github.com/SidharthKriplani/trialcheck) | A/B readout audit — SRM, peeking, underpowered tests |
+| [FeatureLeakageLens](https://github.com/SidharthKriplani/featureleakagelens) | Pre-training leakage — target, temporal, overlap |
+| [GoldenSetAuditor](https://github.com/SidharthKriplani/goldensetauditor) | LLM/RAG eval dataset quality |
 | [DocIngestQA](https://github.com/SidharthKriplani/docingestqa) | RAG document ingestion quality — 11 deterministic checks |
 | [MetricLens](https://github.com/SidharthKriplani/metriclens) | Metric movement decomposition — mix shift vs rate shift |
 
