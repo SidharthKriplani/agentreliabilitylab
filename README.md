@@ -9,9 +9,17 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-009688?style=flat-square&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-> A production-grade LangGraph agent that triages raw cyber alerts against a hybrid RAG knowledge base of MITRE ATT&CK v14, NIST CSF 2.0, and CISA KEV advisories — with a first-class agentic re-retrieval loop, deterministic fast-paths, technique-level hard overrides, and full LangSmith observability.
+> An escalation-aware autonomous agent — built to answer: when should an agent stop looping and escalate instead of retrying? Demonstrated in cyber alert triage against MITRE ATT&CK v14, NIST CSF 2.0, and CISA KEV advisories. Agentic re-retrieval loop with explicit loop bounds, deterministic fast-paths, technique-level hard overrides, and full LangSmith observability.
 
 </div>
+
+---
+
+## Failure Mode Addressed
+
+**When should it stop or escalate?** Autonomous agents fail when they lack explicit termination conditions — when a loop runs unbounded, when retrieval quality degrades silently, when low-confidence output is passed forward as if it were certain. AgentReliabilityLab is built around making those rules explicit, deterministic, and auditable.
+
+The domain — cyber alert triage — is the test environment. The failure mode is the thesis.
 
 ---
 
