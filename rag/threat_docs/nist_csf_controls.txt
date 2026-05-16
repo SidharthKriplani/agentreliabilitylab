@@ -1,0 +1,97 @@
+NIST Cybersecurity Framework 2.0 — Core Controls Reference
+Source: NIST CSF 2.0 (https://www.nist.gov/cyberframework)
+
+=== GOVERN (GV) — Organizational Context ===
+GV.OC-01: The organizational mission is understood and informs cybersecurity risk management.
+GV.OC-04: Critical objectives, capabilities, and services that stakeholders depend on or expect from the organization are understood and communicated.
+GV.RM-01: Risk management objectives are established and agreed to by organizational stakeholders.
+GV.RM-04: Strategic direction that describes appropriate risk response options is established and communicated.
+GV.SC-01: A cybersecurity supply chain risk management program is established, owned, and communicated by roles with authority and responsibility.
+
+=== IDENTIFY (ID) — Asset Management & Risk Assessment ===
+ID.AM-01: Inventories of hardware managed by the organization are maintained.
+ID.AM-02: Inventories of software, services, and systems managed by the organization are maintained.
+ID.AM-03: Representations of the organization's authorized network communication and internal and external network data flows are maintained.
+ID.AM-07: Inventories of data and corresponding metadata for designated data types are maintained.
+ID.RA-01: Vulnerabilities in assets are identified, validated, and recorded.
+ID.RA-02: Cyber threat intelligence is received from information sharing forums and sources.
+ID.RA-03: Internal and external threats to the organization are identified and recorded.
+ID.RA-05: Threats, vulnerabilities, likelihoods, and impacts are used to understand inherent risk and inform risk response prioritization.
+ID.RA-09: The authenticity and integrity of hardware and software are assessed prior to acquisition and use.
+
+=== PROTECT (PR) — Identity Management & Access Control ===
+PR.AA-01: Identities and credentials for authorized users, services, and hardware are managed by the organization.
+PR.AA-02: Identities are proofed and bound to credentials based on the context of interactions.
+PR.AA-03: Users, services, and hardware are authenticated.
+PR.AA-04: Identity assertions are protected, conveyed, and verified.
+PR.AA-05: Access permissions, entitlements, and authorizations are defined in a policy, managed, enforced, and reviewed.
+PR.AA-06: Physical access to assets is managed, monitored, and enforced commensurate with risk.
+PR.AT-01: Personnel are provided awareness and training so that they possess the knowledge and skills to perform general tasks with cybersecurity risks in mind.
+PR.DS-01: The confidentiality, integrity, and availability of data-at-rest are protected.
+PR.DS-02: The confidentiality, integrity, and availability of data-in-transit are protected.
+PR.DS-10: The confidentiality, integrity, and availability of data-in-use are protected.
+PR.IR-01: Networks and environments are protected from unauthorized logical access and usage.
+PR.IR-02: The organization's technology assets are protected from environmental threats.
+PR.PS-01: Configuration management practices are established and applied.
+PR.PS-02: Software is maintained, replaced, and removed commensurate with risk.
+PR.PS-04: Log records are generated and made available for continuous monitoring.
+PR.PS-06: Secure software development practices are integrated, and their security is evaluated.
+
+=== DETECT (DE) — Continuous Monitoring ===
+DE.AE-02: Potentially adverse events are analyzed to better understand associated activities.
+DE.AE-03: Information is correlated from multiple sources.
+DE.AE-04: The estimated impact and scope of adverse events are understood.
+DE.AE-06: Information on adverse events is provided to authorized staff and tools.
+DE.AE-07: Cyber threat intelligence and other contextual information are integrated into the analysis of adverse events.
+DE.AE-08: Incidents are declared when adverse events meet the defined incident criteria.
+DE.CM-01: Networks and network services are monitored to find potentially adverse events.
+DE.CM-02: The physical environment is monitored to find potentially adverse events.
+DE.CM-03: Personnel activity and technology usage are monitored to find potentially adverse events.
+DE.CM-06: External service provider activities and services are monitored to find potentially adverse events.
+DE.CM-09: Computing hardware and software, runtime environments, and their data are monitored to find potentially adverse events.
+
+=== RESPOND (RS) — Incident Response ===
+RS.AN-03: Analysis is performed to establish what has taken place during an incident and the root cause of the incident.
+RS.AN-06: Actions performed during an investigation are recorded, and the records' integrity and provenance are preserved.
+RS.AN-07: Cyber threat intelligence and other contextual information are integrated into the incident response activities.
+RS.AN-08: Incidents are categorized consistent with response plans.
+RS.CO-02: Internal and external stakeholders are notified of incidents in a timely manner.
+RS.MI-01: Incidents are contained.
+RS.MI-02: Incidents are eradicated.
+
+=== RECOVER (RC) — Recovery Planning ===
+RC.RP-01: The recovery portion of the incident response plan is executed once initiated from the incident response process.
+RC.RP-02: Recovery actions are selected, scoped, prioritized, and performed.
+RC.RP-03: The integrity of backups and other restoration assets is verified before using them for restoration.
+RC.RP-04: Critical missions and business functions are provided resources adequately to maintain normal operations throughout a recovery.
+RC.RP-05: The integrity of restored assets is verified, systems and services are restored, and normal operating status is confirmed.
+RC.CO-03: Recovery activities and progress in restoring operational capabilities are communicated to designated internal and external stakeholders.
+
+=== Ransomware-Specific Controls ===
+For ransomware (T1486, T1490) the following controls are highest priority:
+- PR.DS-11: Backups of data are created, protected, maintained, and tested.
+- PR.IR-04: Adequate resource capacity to ensure availability is maintained.
+- DE.AE-08: Incidents are declared when data encryption begins outside scheduled windows.
+- RS.MI-01: Immediately isolate affected endpoints from the network.
+- RC.RP-03: Restore from clean backups only after integrity verification.
+
+=== Credential-Based Attack Controls ===
+For credential theft (T1003, T1078):
+- PR.AA-03: Enforce multi-factor authentication on all privileged accounts.
+- PR.AA-05: Apply least-privilege access; review entitlements quarterly.
+- DE.CM-03: Monitor for anomalous authentication events, failed logons, and lateral movement patterns.
+- RS.AN-03: Identify the blast radius — all accounts that may have been accessed.
+
+=== Lateral Movement Controls ===
+For lateral movement (T1021, T1078.003):
+- PR.IR-01: Segment networks to limit lateral movement between zones.
+- PR.AA-05: Restrict admin share access; disable unnecessary remote services.
+- DE.CM-01: Monitor east-west traffic for anomalous SMB/RDP connections.
+- RS.MI-01: Block compromised credentials immediately upon detection.
+
+=== Phishing Controls ===
+For phishing (T1566):
+- PR.AT-01: Conduct regular phishing simulation and security awareness training.
+- PR.PS-01: Enforce email filtering, DMARC/DKIM/SPF for inbound mail.
+- DE.CM-03: Monitor email gateways for suspicious attachments and links.
+- RS.AN-03: Identify all recipients of the phishing email and assess scope.

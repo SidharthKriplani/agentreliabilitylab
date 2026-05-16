@@ -1,0 +1,38 @@
+name: Eval on PR
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate test fixtures
+        run: python scripts/generate_test_alerts.py
+
+      - name: Run unit tests
+        run: pytest tests/test_intake.py tests/test_routing.py -v
+
+      - name: Run E2E tests (mocked LLM)
+        run: pytest tests/test_e2e.py -v
+
+      - name: Upload eval results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-results
+          path: eval_results.json

@@ -1,0 +1,71 @@
+MITRE ATT&CK Enterprise Techniques — Selected Excerpts
+Source: MITRE ATT&CK v14 (https://attack.mitre.org)
+
+=== T1059 — Command and Scripting Interpreter ===
+Adversaries may abuse command and script interpreters to execute commands, scripts, or binaries. These interfaces and languages provide ways of interacting with computer systems and are a common feature across many different platforms. Most systems come with some built-in command-line interface and scripting capabilities.
+
+T1059.001 — PowerShell: Adversaries may abuse PowerShell commands and scripts for execution. PowerShell is a powerful interactive command-line interface and scripting environment included in the Windows operating system. Adversaries can use PowerShell to perform a number of actions, including discovery of information and execution of code. Examples include the Start-Process cmdlet which can be used to run an executable and the Invoke-Command cmdlet which runs a command locally or on a remote computer.
+
+T1059.003 — Windows Command Shell: Adversaries may abuse the Windows command shell for execution. The Windows command shell (cmd.exe) is the primary command prompt on Windows systems. The Windows command prompt can be used to control almost any aspect of a system. Adversaries can interact with the Windows command shell to perform actions such as spawning additional processes, running arbitrary executable files, and downloading files over the network.
+
+T1059.004 — Unix Shell: Adversaries may abuse Unix shell commands and scripts for execution. Unix shells are the primary way to interact with Unix-based systems. Given their ubiquity, Unix shells are often targeted by adversaries as a means of execution.
+
+=== T1055 — Process Injection ===
+Adversaries may inject code into processes in order to evade process-based defenses as well as possibly elevate privileges. Process injection is a method of executing arbitrary code in the address space of a separate live process. Running code in the context of another process may allow access to the process's memory, system/network resources, and possibly elevated privileges.
+
+T1055.001 — Dynamic-link Library Injection: Adversaries may inject dynamic-link libraries (DLLs) into processes in order to evade process-based defenses. DLL injection is commonly performed by writing the path to a DLL in the virtual address space of the target process before loading the DLL by invoking a new thread.
+
+T1055.012 — Process Hollowing: Adversaries may inject malicious code into suspended and hollowed processes in order to evade process-based defenses. Process hollowing is a method of executing arbitrary code in the address space of a separate live process. The "hollowed" process is started in a suspended state, its memory is unmapped, and malicious code is mapped in its place.
+
+=== T1078 — Valid Accounts ===
+Adversaries may obtain and abuse credentials of existing accounts as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Compromised credentials may be used to bypass access controls placed on various resources on systems within the network and may even be used for persistent access to remote systems and externally available services.
+
+T1078.001 — Default Accounts: Adversaries may obtain and abuse credentials of a default account as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Default accounts are those that are built into an OS, such as the Guest or Administrator accounts on Windows systems.
+
+T1078.003 — Local Accounts: Adversaries may obtain and abuse credentials of a local account as a means of gaining Persistence, Privilege Escalation, and Defense Evasion. Local accounts are those configured by an organization for use by users, remote support, services, or for administration on a single system or service.
+
+=== T1566 — Phishing ===
+Adversaries may send phishing messages to gain access to victim systems. All forms of phishing are electronically delivered social engineering. Phishing can be targeted, known as spearphishing. In spearphishing, a specific individual, company, or industry will be targeted by the adversary.
+
+T1566.001 — Spearphishing Attachment: Adversaries may send spearphishing emails with a malicious attachment in an attempt to gain access to victim systems. Spearphishing attachment is a specific variant of spearphishing. Spearphishing attachment is different from other forms of spearphishing in that it employs the use of malware attached to an email.
+
+T1566.002 — Spearphishing Link: Adversaries may send spearphishing emails with a malicious link in an attempt to gain access to victim systems. Spearphishing with a link is a specific variant of spearphishing. It is different from other forms of spearphishing in that it employs the use of links to download malware contained in email, instead of attaching malicious files to the email itself.
+
+=== T1486 — Data Encrypted for Impact (Ransomware) ===
+Adversaries may encrypt data on target systems or on large numbers of systems in a network to interrupt availability to system and network resources. They can attempt to render stored data inaccessible by encrypting files or data on local and remote drives and withholding access to a decryption key.
+
+Ransomware is a specific type of malware that uses encryption to hold data hostage until payment is received. Notable ransomware families include WannaCry, NotPetya, REvil, Conti, and LockBit. Common file extensions targeted include .doc, .docx, .xls, .pdf, .jpg, .png, .mp4, .mov, .zip, and database files.
+
+Mitigation: Implement data backup and recovery procedures, use application whitelisting, maintain up-to-date endpoint protection software.
+
+=== T1003 — OS Credential Dumping ===
+Adversaries may attempt to dump credentials to obtain account login and credential material, normally in the form of a hash or a clear text password, from the operating system and software. Credentials can then be used to perform Lateral Movement and access restricted information.
+
+T1003.001 — LSASS Memory: Adversaries may attempt to access credential material stored in the process memory of the Local Security Authority Subsystem Service (LSASS). After a user logs on, the system generates and stores a variety of credential materials in LSASS process memory. These credential materials can be harvested by an administrative user or SYSTEM and used to conduct Lateral Movement using Pass the Hash or Pass the Ticket.
+
+Tools commonly used: Mimikatz, ProcDump, TaskManager, Invoke-Mimikatz (PowerShell module).
+
+=== T1021 — Remote Services (Lateral Movement) ===
+Adversaries may use Valid Accounts to log into a service specifically designed to accept remote connections, such as telnet, SSH, and VNC. The adversary may then perform actions as the logged-on user.
+
+T1021.001 — Remote Desktop Protocol: Adversaries may use Valid Accounts to log into a computer using the Remote Desktop Protocol (RDP). The adversary may then perform actions as the logged-on user. Adversaries may also use RDP in conjunction with the Accessibility Features technique for Persistence.
+
+T1021.002 — SMB/Windows Admin Shares: Adversaries may use Valid Accounts to interact with a remote network share using Server Message Block (SMB). The adversary may then perform actions as the logged-on user.
+
+=== T1071 — Application Layer Protocol (C2) ===
+Adversaries may communicate using OSI application layer protocols to avoid detection/network filtering by blending in with existing traffic. Commands to the remote system, and often the results of those commands, will be embedded within the protocol traffic between the client and server.
+
+T1071.001 — Web Protocols: Adversaries may communicate using application layer protocols associated with web traffic to avoid detection/network filtering by blending in with existing traffic. Commands to the remote system, and often the results of those commands, will be embedded within the protocol traffic between the client and server. Common C2 frameworks using HTTP/HTTPS: Cobalt Strike, Metasploit, Empire.
+
+=== T1190 — Exploit Public-Facing Application ===
+Adversaries may attempt to take advantage of a weakness in an Internet-facing computer or program using software, data, or commands in order to cause unintended or unanticipated behavior. The weakness in the system can be a bug, a glitch, or a design vulnerability. These applications are often websites, but can include databases (like SQL), standard services (like SMB or SSH), network device administration and management protocols (like SNMP and Smart Install), and any other applications with Internet accessible open sockets.
+
+Common exploited applications: Apache Log4Shell (CVE-2021-44228), Microsoft Exchange ProxyLogon (CVE-2021-26855), Confluence (CVE-2022-26134), VMware vCenter (CVE-2021-21985).
+
+=== T1041 — Exfiltration Over C2 Channel ===
+Adversaries may steal data by exfiltrating it over an existing command and control channel. Stolen data is encoded into the normal communications channel using the same protocol as command and control communications. Defenders should monitor for anomalous outbound network connections, large data transfers, and unusual process-to-network activity.
+
+=== T1490 — Inhibit System Recovery ===
+Adversaries may delete or remove built-in operating system data and turn off services designed to aid in the recovery of a corrupted system to prevent recovery. Operating systems may contain features that can help fix corrupted systems, such as a backup catalog, volume shadow copies, and automatic repair features. Adversaries may disable or delete system recovery features to augment the effects of Data Destruction and Data Encrypted for Impact.
+
+Commands: vssadmin.exe delete shadows /all /quiet, bcdedit /set {default} recoveryenabled No, wbadmin delete catalog -quiet.

