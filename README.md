@@ -2,6 +2,7 @@
 
 # AgentReliabilityLab — Cyber Alert Triage Agent
 
+[![CI](https://github.com/SidharthKriplani/agentreliabilitylab/actions/workflows/eval.yml/badge.svg)](https://github.com/SidharthKriplani/agentreliabilitylab/actions/workflows/eval.yml)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![LangGraph](https://img.shields.io/badge/LangGraph-0.2%2B-FF6B6B?style=flat-square)](https://github.com/langchain-ai/langgraph)
 [![RAGAS](https://img.shields.io/badge/RAGAS-Retrieval%20Eval-009688?style=flat-square)](https://docs.ragas.io/)
