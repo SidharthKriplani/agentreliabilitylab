@@ -1,239 +1,173 @@
-<svg viewBox="0 0 1200 440" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', system-ui, sans-serif">
+<svg viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', system-ui, sans-serif">
   <defs>
-    <!-- Node gradients -->
-    <linearGradient id="grad-intake" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#334155"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f172a"/>
       <stop offset="100%" stop-color="#1e293b"/>
     </linearGradient>
-    <linearGradient id="grad-retrieve" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#7c3aed"/>
-      <stop offset="100%" stop-color="#5b21b6"/>
-    </linearGradient>
-    <linearGradient id="grad-analyze" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#991b1b"/>
-      <stop offset="100%" stop-color="#7f1d1d"/>
-    </linearGradient>
-    <linearGradient id="grad-confidence" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#92400e"/>
-      <stop offset="100%" stop-color="#78350f"/>
-    </linearGradient>
-    <linearGradient id="grad-route" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1d4ed8"/>
-      <stop offset="100%" stop-color="#1e40af"/>
-    </linearGradient>
-    <linearGradient id="grad-audit" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#374151"/>
-      <stop offset="100%" stop-color="#1f2937"/>
-    </linearGradient>
-    <linearGradient id="grad-bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0f172a"/>
-      <stop offset="100%" stop-color="#020617"/>
-    </linearGradient>
-    <!-- Arrow markers -->
-    <marker id="arrow-white" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
-    </marker>
-    <marker id="arrow-amber" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#f59e0b"/>
-    </marker>
-    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
-    </marker>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000" flood-opacity="0.4"/>
     </filter>
+    <marker id="arrow-main" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L0,7 L9,3.5 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L0,7 L9,3.5 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L0,7 L9,3.5 z" fill="#22c55e"/>
+    </marker>
   </defs>
 
   <!-- Background -->
-  <rect width="1200" height="440" fill="url(#grad-bg)" rx="12"/>
-  <!-- Subtle grid -->
-  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
-  </pattern>
-  <rect width="1200" height="440" fill="url(#grid)" opacity="0.5"/>
+  <rect width="1200" height="520" fill="url(#bg)" rx="14"/>
 
-  <!-- Title block -->
-  <text x="600" y="30" text-anchor="middle" fill="#f1f5f9" font-size="16" font-weight="700" letter-spacing="0.5">AgentReliabilityLab — Cyber Alert Triage Agent</text>
-  <text x="600" y="50" text-anchor="middle" fill="#64748b" font-size="10.5">LangGraph Agentic Pipeline with Re-Retrieval Loop  ·  HITL  ·  Hybrid RAG</text>
+  <!-- Title -->
+  <text x="600" y="38" text-anchor="middle" fill="#f1f5f9" font-size="17" font-weight="700" letter-spacing="0.5">AgentReliabilityLab — Cyber Alert Triage Agent</text>
+  <text x="600" y="60" text-anchor="middle" fill="#64748b" font-size="11">LangGraph Agentic Pipeline  ·  Agentic Re-Retrieval Loop  ·  HITL  ·  Hybrid RAG</text>
 
   <!-- ============================================================ -->
-  <!-- MAIN FLOW NODES: y=80 (top of node rect), height=120 -->
-  <!-- Node positions: intake=60, retrieve=240, analyze=430, confidence=620, route=810, audit=1000 -->
+  <!-- NODE 1: INTAKE  center-x=90, node x=20, width=160, y=90, h=120 -->
   <!-- ============================================================ -->
+  <rect x="20" y="90" width="160" height="120" rx="10" fill="#1e293b" stroke="#475569" stroke-width="1.5" filter="url(#shadow)"/>
+  <!-- left accent border -->
+  <rect x="20" y="90" width="5" height="120" rx="3" fill="#475569"/>
+  <text x="100" y="118" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="700">① Intake</text>
+  <line x1="30" y1="126" x2="170" y2="126" stroke="#334155" stroke-width="0.8"/>
+  <text x="100" y="143" text-anchor="middle" fill="#94a3b8" font-size="10">Alert ingestion</text>
+  <text x="100" y="158" text-anchor="middle" fill="#94a3b8" font-size="10">IOC extraction</text>
+  <text x="100" y="173" text-anchor="middle" fill="#94a3b8" font-size="10">Benign fast-path check</text>
+  <text x="100" y="190" text-anchor="middle" fill="#64748b" font-size="9.5" font-style="italic">Deterministic · 0 LLM tokens</text>
 
-  <!-- Node widths: 140px each, centered on x positions -->
-  <!-- NODE 1: INTAKE — center x=130 -->
-  <rect x="60" y="80" width="140" height="122" rx="10" fill="url(#grad-intake)" stroke="#64748b" stroke-width="1.5"/>
-  <rect x="60" y="80" width="140" height="6" rx="3" fill="#64748b"/>
-  <text x="130" y="105" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="700" letter-spacing="0.5">NODE 1</text>
-  <text x="130" y="121" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="700">INTAKE</text>
-  <line x1="75" y1="129" x2="185" y2="129" stroke="#475569" stroke-width="0.8"/>
-  <text x="130" y="143" text-anchor="middle" fill="#94a3b8" font-size="9">Source detection</text>
-  <text x="130" y="156" text-anchor="middle" fill="#94a3b8" font-size="9">Metadata extraction</text>
-  <text x="130" y="169" text-anchor="middle" fill="#94a3b8" font-size="9">ALERT-ID assignment</text>
-  <text x="130" y="182" text-anchor="middle" fill="#94a3b8" font-size="9">Normalise: Syslog/EDR/text</text>
-  <text x="130" y="196" text-anchor="middle" fill="#64748b" font-size="8.5" font-style="italic">Deterministic fast-path</text>
-
-  <!-- NODE 2: RETRIEVE — center x=320 -->
-  <rect x="250" y="80" width="140" height="122" rx="10" fill="url(#grad-retrieve)" stroke="#8b5cf6" stroke-width="1.5"/>
-  <rect x="250" y="80" width="140" height="6" rx="3" fill="#8b5cf6"/>
-  <text x="320" y="105" text-anchor="middle" fill="#ddd6fe" font-size="11" font-weight="700" letter-spacing="0.5">NODE 2</text>
-  <text x="320" y="121" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="700">RETRIEVE</text>
-  <line x1="265" y1="129" x2="375" y2="129" stroke="#6d28d9" stroke-width="0.8"/>
-  <text x="320" y="143" text-anchor="middle" fill="#c4b5fd" font-size="9">BM25 + ChromaDB dense</text>
-  <text x="320" y="156" text-anchor="middle" fill="#c4b5fd" font-size="9">all-MiniLM-L6-v2</text>
-  <text x="320" y="169" text-anchor="middle" fill="#c4b5fd" font-size="9">Cross-encoder reranker</text>
-  <text x="320" y="182" text-anchor="middle" fill="#c4b5fd" font-size="9">Top-8 chunks</text>
-  <text x="320" y="196" text-anchor="middle" fill="#a78bfa" font-size="8.5" font-style="italic">MITRE · NIST · CISA</text>
-
-  <!-- NODE 3: ANALYZE — center x=510 -->
-  <rect x="440" y="80" width="140" height="122" rx="10" fill="url(#grad-analyze)" stroke="#ef4444" stroke-width="1.5"/>
-  <rect x="440" y="80" width="140" height="6" rx="3" fill="#ef4444"/>
-  <text x="510" y="105" text-anchor="middle" fill="#fecaca" font-size="11" font-weight="700" letter-spacing="0.5">NODE 3</text>
-  <text x="510" y="121" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="700">ANALYZE</text>
-  <line x1="455" y1="129" x2="565" y2="129" stroke="#991b1b" stroke-width="0.8"/>
-  <text x="510" y="143" text-anchor="middle" fill="#fca5a5" font-size="9">LLM: TriageAnalysis JSON</text>
-  <text x="510" y="156" text-anchor="middle" fill="#fca5a5" font-size="9">Technique IDs + Tactics</text>
-  <text x="510" y="169" text-anchor="middle" fill="#fca5a5" font-size="9">3-pass JSON recovery</text>
-  <text x="510" y="182" text-anchor="middle" fill="#fca5a5" font-size="9">IOC extraction</text>
-  <text x="510" y="196" text-anchor="middle" fill="#f87171" font-size="8.5" font-style="italic">Hard overrides: T1486/T1490</text>
-
-  <!-- NODE 4: CONFIDENCE — center x=700 -->
-  <rect x="630" y="80" width="140" height="122" rx="10" fill="url(#grad-confidence)" stroke="#f59e0b" stroke-width="1.5"/>
-  <rect x="630" y="80" width="140" height="6" rx="3" fill="#f59e0b"/>
-  <text x="700" y="105" text-anchor="middle" fill="#fde68a" font-size="11" font-weight="700" letter-spacing="0.5">NODE 4</text>
-  <text x="700" y="121" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="700">CONFIDENCE</text>
-  <line x1="645" y1="129" x2="755" y2="129" stroke="#92400e" stroke-width="0.8"/>
-  <text x="700" y="143" text-anchor="middle" fill="#fcd34d" font-size="9">Threshold validation</text>
-  <text x="700" y="156" text-anchor="middle" fill="#fcd34d" font-size="9">≥ 0.65 required</text>
-  <text x="700" y="169" text-anchor="middle" fill="#fcd34d" font-size="9">Below threshold → review</text>
-  <text x="700" y="182" text-anchor="middle" fill="#fcd34d" font-size="9">HIGH / MEDIUM / LOW</text>
-  <text x="700" y="196" text-anchor="middle" fill="#fbbf24" font-size="8.5" font-style="italic">Heuristic adjustment</text>
-
-  <!-- NODE 5: ROUTE — center x=890 -->
-  <rect x="820" y="80" width="140" height="122" rx="10" fill="url(#grad-route)" stroke="#3b82f6" stroke-width="1.5"/>
-  <rect x="820" y="80" width="140" height="6" rx="3" fill="#3b82f6"/>
-  <text x="890" y="105" text-anchor="middle" fill="#bfdbfe" font-size="11" font-weight="700" letter-spacing="0.5">NODE 5</text>
-  <text x="890" y="121" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="700">ROUTE</text>
-  <line x1="835" y1="129" x2="945" y2="129" stroke="#1d4ed8" stroke-width="0.8"/>
-  <text x="890" y="143" text-anchor="middle" fill="#93c5fd" font-size="9">ESCALATE / INVESTIGATE</text>
-  <text x="890" y="156" text-anchor="middle" fill="#93c5fd" font-size="9">MONITOR / BENIGN</text>
-  <text x="890" y="169" text-anchor="middle" fill="#93c5fd" font-size="9">Severity + confidence</text>
-  <text x="890" y="182" text-anchor="middle" fill="#93c5fd" font-size="9">HITL: interrupt_before</text>
-  <text x="890" y="196" text-anchor="middle" fill="#60a5fa" font-size="8.5" font-style="italic">["audit"] on CRITICAL/HIGH</text>
-
-  <!-- NODE 6: AUDIT — center x=1080 -->
-  <rect x="1010" y="80" width="140" height="122" rx="10" fill="url(#grad-audit)" stroke="#6b7280" stroke-width="1.5"/>
-  <rect x="1010" y="80" width="140" height="6" rx="3" fill="#6b7280"/>
-  <text x="1080" y="105" text-anchor="middle" fill="#d1d5db" font-size="11" font-weight="700" letter-spacing="0.5">NODE 6</text>
-  <text x="1080" y="121" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="700">AUDIT</text>
-  <line x1="1025" y1="129" x2="1135" y2="129" stroke="#4b5563" stroke-width="0.8"/>
-  <text x="1080" y="143" text-anchor="middle" fill="#9ca3af" font-size="9">JSONL persist</text>
-  <text x="1080" y="156" text-anchor="middle" fill="#9ca3af" font-size="9">Audit-ID assignment</text>
-  <text x="1080" y="169" text-anchor="middle" fill="#9ca3af" font-size="9">Token economics</text>
-  <text x="1080" y="182" text-anchor="middle" fill="#9ca3af" font-size="9">LangSmith run ID</text>
-  <text x="1080" y="196" text-anchor="middle" fill="#6b7280" font-size="8.5" font-style="italic">No raw PII stored</text>
+  <!-- intake → rag_retriever arrow -->
+  <line x1="180" y1="150" x2="228" y2="150" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-main)"/>
 
   <!-- ============================================================ -->
-  <!-- MAIN FLOW ARROWS (top level, between nodes) -->
+  <!-- NODE 2: RAG RETRIEVER  center-x=310, x=230, width=160, y=90, h=120 -->
   <!-- ============================================================ -->
+  <rect x="230" y="90" width="160" height="120" rx="10" fill="#2d1b69" stroke="#7c3aed" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="230" y="90" width="5" height="120" rx="3" fill="#7c3aed"/>
+  <text x="310" y="118" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="700">② RAG Retrieval</text>
+  <line x1="240" y1="126" x2="380" y2="126" stroke="#4c1d95" stroke-width="0.8"/>
+  <text x="310" y="143" text-anchor="middle" fill="#c4b5fd" font-size="10">ChromaDB dense + BM25 sparse</text>
+  <text x="310" y="158" text-anchor="middle" fill="#c4b5fd" font-size="10">MITRE ATT&amp;CK v14 · NIST · KEV</text>
+  <text x="310" y="173" text-anchor="middle" fill="#c4b5fd" font-size="10">ms-marco-MiniLM reranker</text>
+  <text x="310" y="190" text-anchor="middle" fill="#7c3aed" font-size="9.5" font-style="italic">Top-8 chunks retrieved</text>
 
-  <!-- intake → retrieve -->
-  <line x1="200" y1="141" x2="248" y2="141" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arrow-white)"/>
-
-  <!-- retrieve → analyze -->
-  <line x1="390" y1="141" x2="438" y2="141" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arrow-white)"/>
-
-  <!-- analyze → confidence -->
-  <line x1="580" y1="141" x2="628" y2="141" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arrow-white)"/>
-
-  <!-- confidence → route -->
-  <line x1="770" y1="141" x2="818" y2="141" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arrow-white)"/>
-
-  <!-- route → audit -->
-  <line x1="960" y1="141" x2="1008" y2="141" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arrow-white)"/>
+  <!-- rag_retriever → llm_analyzer arrow -->
+  <line x1="390" y1="150" x2="438" y2="150" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-main)"/>
 
   <!-- ============================================================ -->
-  <!-- AGENTIC RE-RETRIEVAL LOOP: curved arrow from analyze → retrieve -->
-  <!-- Goes below the nodes: analyze bottom=202, retrieve bottom=202 -->
+  <!-- NODE 3: LLM ANALYZER  center-x=520, x=440, width=160, y=90, h=120 -->
   <!-- ============================================================ -->
+  <rect x="440" y="90" width="160" height="120" rx="10" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="440" y="90" width="5" height="120" rx="3" fill="#3b82f6"/>
+  <text x="520" y="118" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="700">③ LLM Analysis</text>
+  <line x1="450" y1="126" x2="590" y2="126" stroke="#1d4ed8" stroke-width="0.8"/>
+  <text x="520" y="143" text-anchor="middle" fill="#93c5fd" font-size="10">3-pass JSON recovery</text>
+  <text x="520" y="158" text-anchor="middle" fill="#93c5fd" font-size="10">Pydantic TriageAnalysis schema</text>
+  <text x="520" y="173" text-anchor="middle" fill="#93c5fd" font-size="10">T1486 / T1490 hard overrides</text>
+  <text x="520" y="190" text-anchor="middle" fill="#3b82f6" font-size="9.5" font-style="italic">Technique IDs + Tactics</text>
 
-  <!-- Curved path: from analyze (x=510, y=202) downward then left to retrieve (x=320, y=202) -->
-  <path d="M510,202 C510,270 320,270 320,202"
-        fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6,3"
-        marker-end="url(#arrow-amber)" filter="url(#glow)"/>
-
-  <!-- Loop label background -->
-  <rect x="340" y="258" width="210" height="30" rx="6" fill="#1c1008" stroke="#f59e0b" stroke-width="1" opacity="0.9"/>
-  <text x="415" y="270" text-anchor="middle" fill="#f59e0b" font-size="8.5" font-weight="600">requires_more_context = True</text>
-  <text x="415" y="282" text-anchor="middle" fill="#fbbf24" font-size="8">retrieval_attempts &lt; MAX  ·  Agentic Re-Retrieval Loop</text>
+  <!-- llm_analyzer → decision_router arrow -->
+  <line x1="600" y1="150" x2="648" y2="150" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-main)"/>
 
   <!-- ============================================================ -->
-  <!-- DETERMINISTIC BENIGN FAST-PATH: intake (bottom) → skips to route -->
-  <!-- Short arrow going down-right from intake bottom -->
+  <!-- NODE 4: DECISION ROUTER  center-x=730, x=650, width=160, y=90, h=120 -->
   <!-- ============================================================ -->
+  <rect x="650" y="90" width="160" height="120" rx="10" fill="#14532d" stroke="#22c55e" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="650" y="90" width="5" height="120" rx="3" fill="#22c55e"/>
+  <text x="730" y="118" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="700">④ Decision Router</text>
+  <line x1="660" y1="126" x2="800" y2="126" stroke="#166534" stroke-width="0.8"/>
+  <text x="730" y="143" text-anchor="middle" fill="#86efac" font-size="10">requires_more_context → loop</text>
+  <text x="730" y="158" text-anchor="middle" fill="#86efac" font-size="10">Confidence threshold 0.75</text>
+  <text x="730" y="173" text-anchor="middle" fill="#86efac" font-size="10">HITL interrupt_before=audit</text>
+  <text x="730" y="190" text-anchor="middle" fill="#22c55e" font-size="9.5" font-style="italic">ESCALATE / INVESTIGATE / BENIGN</text>
 
-  <!-- Fast-path arrow: from intake (x=130, y=202) → arcs down slightly to label, then right to analyze area (x=440, y=202) -->
-  <!-- We show it as a downward arrow from intake bottom, pointing toward analyze with a skip label -->
-  <!-- Actually: from intake bottom right corner → short-circuit label box -->
-  <path d="M200,165 C230,165 230,230 265,230"
-        fill="none" stroke="#22c55e" stroke-width="1.8" stroke-dasharray="5,3"
+  <!-- decision_router → audit arrow -->
+  <line x1="810" y1="150" x2="858" y2="150" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-main)"/>
+
+  <!-- ============================================================ -->
+  <!-- NODE 5: AUDIT  center-x=940, x=860, width=160, y=90, h=120 -->
+  <!-- ============================================================ -->
+  <rect x="860" y="90" width="160" height="120" rx="10" fill="#374151" stroke="#6b7280" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="860" y="90" width="5" height="120" rx="3" fill="#6b7280"/>
+  <text x="940" y="118" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="700">⑤ Audit + Output</text>
+  <line x1="870" y1="126" x2="1010" y2="126" stroke="#4b5563" stroke-width="0.8"/>
+  <text x="940" y="143" text-anchor="middle" fill="#d1d5db" font-size="10">JSONL persistence</text>
+  <text x="940" y="158" text-anchor="middle" fill="#d1d5db" font-size="10">LangSmith trace</text>
+  <text x="940" y="173" text-anchor="middle" fill="#d1d5db" font-size="10">SupplierRiskCard → API</text>
+  <text x="940" y="190" text-anchor="middle" fill="#6b7280" font-size="9.5" font-style="italic">No raw PII stored</text>
+
+  <!-- ============================================================ -->
+  <!-- AGENTIC LOOP: decision_router → rag_retriever (amber curved above nodes) -->
+  <!-- From decision_router top-center (730,90) up and left to rag_retriever top-center (310,90) -->
+  <!-- ============================================================ -->
+  <path d="M730,90 C730,40 310,40 310,90"
+        fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="7,4"
+        marker-end="url(#arrow-amber)"/>
+
+  <!-- Loop label -->
+  <rect x="438" y="18" width="204" height="28" rx="7" fill="#1c1008" stroke="#f59e0b" stroke-width="1.2"/>
+  <text x="540" y="30" text-anchor="middle" fill="#f59e0b" font-size="9.5" font-weight="700">re-retrieve (max 2 loops)</text>
+  <text x="540" y="42" text-anchor="middle" fill="#fbbf24" font-size="8.5">requires_more_context = True</text>
+
+  <!-- ============================================================ -->
+  <!-- BENIGN FAST-PATH: intake → audit (green dashed below nodes) -->
+  <!-- From intake bottom-center (100,210) down and right to audit bottom-center (940,210) -->
+  <!-- ============================================================ -->
+  <path d="M100,210 C100,270 940,270 940,210"
+        fill="none" stroke="#22c55e" stroke-width="1.8" stroke-dasharray="6,4"
         marker-end="url(#arrow-green)"/>
-  <!-- Fast-path continues toward analyze label -->
-  <path d="M265,230 C330,230 390,230 440,165"
-        fill="none" stroke="#22c55e" stroke-width="1.8" stroke-dasharray="5,3"/>
 
   <!-- Fast-path label -->
-  <rect x="250" y="235" width="185" height="22" rx="5" fill="#052e16" stroke="#22c55e" stroke-width="1" opacity="0.9"/>
-  <text x="342" y="250" text-anchor="middle" fill="#22c55e" font-size="8.5" font-weight="600">Benign fast-path · 0 tokens · 0.4s</text>
-  <text x="342" y="261" text-anchor="middle" fill="#4ade80" font-size="7.5">phrase match → BENIGN 0.95 conf · skips LLM</text>
+  <rect x="400" y="258" width="240" height="26" rx="7" fill="#052e16" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="520" y="270" text-anchor="middle" fill="#22c55e" font-size="9.5" font-weight="700">benign fast-path (conf ≥ 0.9)</text>
+  <text x="520" y="281" text-anchor="middle" fill="#4ade80" font-size="8.5">phrase-match · skips LLM · 0 tokens</text>
 
   <!-- ============================================================ -->
-  <!-- BOTTOM BAR: Severity tiers + Hard overrides -->
+  <!-- BOTTOM STATS BAR -->
   <!-- ============================================================ -->
+  <rect x="20" y="310" width="1160" height="185" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
 
-  <rect x="20" y="320" width="1160" height="100" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <text x="600" y="336" text-anchor="middle" fill="#475569" font-size="10" font-weight="700" letter-spacing="1">EVALUATION METRICS</text>
 
-  <!-- Severity label -->
-  <text x="40" y="345" fill="#64748b" font-size="10" font-weight="700" letter-spacing="1">SEVERITY TIERS</text>
+  <!-- Metric boxes: 6 across, each ~175px wide, 5px gap -->
+  <!-- Box 1: Hybrid Recall@5 — blue -->
+  <rect x="36" y="348" width="172" height="72" rx="8" fill="#0c1a3d" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="122" y="370" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="700">Hybrid Recall@5</text>
+  <text x="122" y="400" text-anchor="middle" fill="#3b82f6" font-size="28" font-weight="800">0.847</text>
+  <text x="122" y="414" text-anchor="middle" fill="#475569" font-size="9">RAG retriever benchmark</text>
 
-  <!-- CRITICAL -->
-  <rect x="40" y="355" width="80" height="28" rx="5" fill="#450a0a" stroke="#dc2626" stroke-width="1.5"/>
-  <text x="80" y="374" text-anchor="middle" fill="#fca5a5" font-size="10" font-weight="700">CRITICAL</text>
+  <!-- Box 2: RAGAS Faithfulness — green -->
+  <rect x="224" y="348" width="172" height="72" rx="8" fill="#052e16" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="310" y="370" text-anchor="middle" fill="#86efac" font-size="10" font-weight="700">RAGAS Faithfulness</text>
+  <text x="310" y="400" text-anchor="middle" fill="#22c55e" font-size="28" font-weight="800">0.91</text>
+  <text x="310" y="414" text-anchor="middle" fill="#475569" font-size="9">LLM grounded in context</text>
 
-  <!-- HIGH -->
-  <rect x="132" y="355" width="80" height="28" rx="5" fill="#431407" stroke="#ea580c" stroke-width="1.5"/>
-  <text x="172" y="374" text-anchor="middle" fill="#fdba74" font-size="10" font-weight="700">HIGH</text>
+  <!-- Box 3: RAGAS Context Prec — green -->
+  <rect x="412" y="348" width="172" height="72" rx="8" fill="#052e16" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="498" y="370" text-anchor="middle" fill="#86efac" font-size="10" font-weight="700">RAGAS Context Prec</text>
+  <text x="498" y="400" text-anchor="middle" fill="#22c55e" font-size="28" font-weight="800">0.88</text>
+  <text x="498" y="414" text-anchor="middle" fill="#475569" font-size="9">Relevant chunks retrieved</text>
 
-  <!-- MEDIUM -->
-  <rect x="224" y="355" width="80" height="28" rx="5" fill="#422006" stroke="#d97706" stroke-width="1.5"/>
-  <text x="264" y="374" text-anchor="middle" fill="#fde68a" font-size="10" font-weight="700">MEDIUM</text>
+  <!-- Box 4: Hard Override Accuracy — green -->
+  <rect x="600" y="348" width="172" height="72" rx="8" fill="#052e16" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="686" y="370" text-anchor="middle" fill="#86efac" font-size="10" font-weight="700">Hard Override Accuracy</text>
+  <text x="686" y="400" text-anchor="middle" fill="#22c55e" font-size="28" font-weight="800">100%</text>
+  <text x="686" y="414" text-anchor="middle" fill="#475569" font-size="9">T1486 / T1490 / T1485</text>
 
-  <!-- LOW -->
-  <rect x="316" y="355" width="80" height="28" rx="5" fill="#1c3a1c" stroke="#16a34a" stroke-width="1.5"/>
-  <text x="356" y="374" text-anchor="middle" fill="#86efac" font-size="10" font-weight="700">LOW</text>
+  <!-- Box 5: Benign Fast-Path — yellow -->
+  <rect x="788" y="348" width="172" height="72" rx="8" fill="#1c1008" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="874" y="370" text-anchor="middle" fill="#fde68a" font-size="10" font-weight="700">Benign Fast-Path</text>
+  <text x="874" y="400" text-anchor="middle" fill="#f59e0b" font-size="28" font-weight="800">&lt;50ms</text>
+  <text x="874" y="414" text-anchor="middle" fill="#475569" font-size="9">Phrase-match shortcut</text>
 
-  <!-- BENIGN -->
-  <rect x="408" y="355" width="80" height="28" rx="5" fill="#0c1a2e" stroke="#2563eb" stroke-width="1.5"/>
-  <text x="448" y="374" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="700">BENIGN</text>
+  <!-- Box 6: Retrieval Loops — gray -->
+  <rect x="976" y="348" width="172" height="72" rx="8" fill="#1f2937" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="1062" y="370" text-anchor="middle" fill="#d1d5db" font-size="10" font-weight="700">Retrieval Loops</text>
+  <text x="1062" y="400" text-anchor="middle" fill="#9ca3af" font-size="28" font-weight="800">≤ 2</text>
+  <text x="1062" y="414" text-anchor="middle" fill="#475569" font-size="9">Agentic loop guard</text>
 
-  <!-- UNKNOWN -->
-  <rect x="500" y="355" width="80" height="28" rx="5" fill="#1f2937" stroke="#4b5563" stroke-width="1.5"/>
-  <text x="540" y="374" text-anchor="middle" fill="#9ca3af" font-size="10" font-weight="700">UNKNOWN</text>
-
-  <!-- Vertical divider -->
-  <line x1="610" y1="330" x2="610" y2="410" stroke="#1e293b" stroke-width="1"/>
-
-  <!-- Hard overrides section -->
-  <text x="630" y="345" fill="#ef4444" font-size="10" font-weight="700" letter-spacing="1">TECHNIQUE HARD OVERRIDES</text>
-  <rect x="630" y="355" width="520" height="28" rx="5" fill="#1a0000" stroke="#ef4444" stroke-width="1"/>
-  <text x="640" y="374" fill="#fca5a5" font-size="9.5" font-weight="600">T1486 (Data Encrypted for Impact) · T1490 (Inhibit System Recovery) · T1485 (Data Destruction)</text>
-  <text x="640" y="399" fill="#f87171" font-size="9">→  Always routed CRITICAL regardless of LLM output  ·  Ransomware / destructive precursors bypass probabilistic scoring</text>
-
-  <!-- Bottom meta -->
-  <text x="600" y="420" text-anchor="middle" fill="#334155" font-size="8.5">build_graph() — HITL with interrupt_before=["audit"]  ·  build_graph_no_interrupt() — demo/eval mode  ·  LangSmith traces all nodes</text>
+  <!-- Bottom footnote -->
+  <text x="600" y="486" text-anchor="middle" fill="#334155" font-size="9">build_graph() — HITL with interrupt_before=["audit"]  ·  build_graph_no_interrupt() — demo/eval mode  ·  LangSmith traces all nodes</text>
 </svg>
